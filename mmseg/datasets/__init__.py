@@ -15,6 +15,7 @@ from .isaid import iSAIDDataset
 from .isprs import ISPRSDataset
 from .loveda import LoveDADataset
 from .night_driving import NightDrivingDataset
+from .nlsclanduse import NLSCLanduseDataset
 from .pascal_context import PascalContextDataset, PascalContextDataset59
 from .potsdam import PotsdamDataset
 from .stare import STAREDataset
@@ -50,4 +51,5 @@ __all__ = [
     'GTADataset',
     'SynthiaDataset',
     'UDADataset',
+    'NLSCLanduseDataset',
 ]
