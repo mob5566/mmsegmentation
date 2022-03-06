@@ -22,4 +22,4 @@ class NLSCLanduseDataset(CustomDataset):
 
     def __init__(self, **kwargs):
         super(NLSCLanduseDataset, self).__init__(
-            img_suffix='.webp', seg_map_suffix='.png', **kwargs)
+            img_suffix='.jpg', seg_map_suffix='.png', **kwargs)
