@@ -4,8 +4,8 @@ _base_ = [
 ]
 
 model = dict(
-    decode_head=dict(num_classes=9),
-    auxiliary_head=dict(num_classes=9),
+    decode_head=dict(num_classes=8),
+    auxiliary_head=dict(num_classes=8),
     # model training and testing settings
     train_cfg=dict(),
     test_cfg=dict(mode='whole')

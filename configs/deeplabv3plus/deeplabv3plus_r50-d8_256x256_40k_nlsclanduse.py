@@ -4,6 +4,6 @@ _base_ = [
     '../_base_/schedules/schedule_40k.py'
 ]
 model = dict(
-    decode_head=dict(num_classes=9),
-    auxiliary_head=dict(num_classes=9))
+    decode_head=dict(num_classes=8),
+    auxiliary_head=dict(num_classes=8))
 # optimizer = dict(type='SGD', lr=0.004, momentum=0.9, weight_decay=0.0001)
