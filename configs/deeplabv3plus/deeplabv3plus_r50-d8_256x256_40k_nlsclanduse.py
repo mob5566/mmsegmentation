@@ -7,3 +7,10 @@ model = dict(
     decode_head=dict(num_classes=8),
     auxiliary_head=dict(num_classes=8))
 # optimizer = dict(type='SGD', lr=0.004, momentum=0.9, weight_decay=0.0001)
+
+log_config = dict(
+    interval=50,
+    hooks=[
+        dict(type='TextLoggerHook', by_epoch=False),
+        dict(type='TensorboardLoggerHook')
+    ])
