@@ -1,6 +1,4 @@
 # Copyright (c) OpenMMLab. All rights reserved.
-import os.path as osp
-
 from .builder import DATASETS
 from .custom import CustomDataset
 
@@ -22,4 +20,4 @@ class NLSCLanduseDataset(CustomDataset):
 
     def __init__(self, **kwargs):
         super(NLSCLanduseDataset, self).__init__(
-            img_suffix='.jpg', seg_map_suffix='.png', **kwargs)
+            img_suffix='.png', seg_map_suffix='.png', **kwargs)
