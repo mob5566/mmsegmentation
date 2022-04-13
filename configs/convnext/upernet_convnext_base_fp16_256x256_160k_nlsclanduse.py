@@ -5,7 +5,7 @@ _base_ = [
 ]
 model = dict(
     decode_head=dict(num_classes=8),
-    auxiliary_head=dict(num_classes=8),
+    auxiliary_head=dict(in_channels=512, num_classes=8),
 )
 
 optimizer = dict(
