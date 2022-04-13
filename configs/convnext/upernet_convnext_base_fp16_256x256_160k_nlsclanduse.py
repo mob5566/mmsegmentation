@@ -4,7 +4,6 @@ _base_ = [
     '../_base_/schedules/schedule_160k.py'
 ]
 model = dict(
-    pretrained='pretrain/convnext-base_3rdparty_in21k_20220301-262fd037.pth',
     decode_head=dict(num_classes=8),
     auxiliary_head=dict(num_classes=8),
 )
