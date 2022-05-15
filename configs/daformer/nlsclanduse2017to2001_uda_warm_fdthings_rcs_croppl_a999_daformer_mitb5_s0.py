@@ -1,7 +1,7 @@
 _base_ = [
     '../_base_/default_runtime.py',
     # DAFormer Network Architecture
-    '../_base_/models/daformer_sepaspp_mitb5.py',
+    '../_base_/models/daformer_sepaspp_mitb5_nlsclanduse.py',
     # GTA->Cityscapes Data Loading
     '../_base_/datasets/uda_nlsclanduse2017_to_2001_216x216.py',
     # Basic UDA Self-Training
