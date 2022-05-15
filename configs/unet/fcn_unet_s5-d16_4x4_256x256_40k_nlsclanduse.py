@@ -4,12 +4,11 @@ _base_ = [
 ]
 
 model = dict(
-    decode_head=dict(num_classes=8),
-    auxiliary_head=dict(num_classes=8),
+    decode_head=dict(num_classes=7),
+    auxiliary_head=dict(num_classes=7),
     # model training and testing settings
     train_cfg=dict(),
-    test_cfg=dict(mode='whole')
-)
+    test_cfg=dict(mode='whole'))
 
 data = dict(
     samples_per_gpu=4,
