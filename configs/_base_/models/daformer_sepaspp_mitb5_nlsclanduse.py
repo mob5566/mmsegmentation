@@ -3,7 +3,7 @@ _base_ = ['daformer_conv1_mitb5.py']
 norm_cfg = dict(type='BN', requires_grad=True)
 model = dict(
     decode_head=dict(
-        num_classes=7,
+        num_classes=11,
         decoder_params=dict(
             fusion_cfg=dict(
                 _delete_=True,
