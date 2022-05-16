@@ -38,11 +38,17 @@ optimizer = dict(
             head=dict(lr_mult=10.0),
             pos_block=dict(decay_mult=0.0),
             norm=dict(decay_mult=0.0))))
+log_config = dict(
+    interval=50,
+    hooks=[
+        dict(type='TextLoggerHook', by_epoch=False),
+        dict(type='TensorboardLoggerHook')
+    ])
 n_gpus = 1
 runner = dict(type='IterBasedRunner', max_iters=40000)
 # Logging Configuration
-checkpoint_config = dict(by_epoch=False, interval=40000, max_keep_ckpts=1)
-evaluation = dict(interval=4000, metric='mIoU')
+checkpoint_config = dict(by_epoch=False, interval=1000, max_keep_ckpts=10)
+evaluation = dict(interval=500, metric='mIoU')
 # Meta Information for Result Analysis
 name = 'nlsclanduse2017to2001_uda' \
        '_warm_fdthings_rcs_croppl_a999_daformer_mitb5_s0'
