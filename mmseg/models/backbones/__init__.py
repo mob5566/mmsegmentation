@@ -8,6 +8,8 @@ from .fast_scnn import FastSCNN
 from .hrnet import HRNet
 from .icnet import ICNet
 from .mit import MixVisionTransformer
+from .mix_transformer import (MixVisionTransformerDA, mit_b0, mit_b1, mit_b2,
+                              mit_b3, mit_b4, mit_b5)
 from .mobilenet_v2 import MobileNetV2
 from .mobilenet_v3 import MobileNetV3
 from .resnest import ResNeSt
@@ -21,9 +23,35 @@ from .unet import UNet
 from .vit import VisionTransformer
 
 __all__ = [
-    'ResNet', 'ResNetV1c', 'ResNetV1d', 'ResNeXt', 'HRNet', 'FastSCNN',
-    'ResNeSt', 'MobileNetV2', 'UNet', 'CGNet', 'MobileNetV3',
-    'VisionTransformer', 'SwinTransformer', 'MixVisionTransformer',
-    'BiSeNetV1', 'BiSeNetV2', 'ICNet', 'TIMMBackbone', 'ERFNet', 'PCPVT',
-    'SVT', 'STDCNet', 'STDCContextPathNet', 'BEiT'
+    'ResNet',
+    'ResNetV1c',
+    'ResNetV1d',
+    'ResNeXt',
+    'HRNet',
+    'FastSCNN',
+    'ResNeSt',
+    'MobileNetV2',
+    'UNet',
+    'CGNet',
+    'MobileNetV3',
+    'VisionTransformer',
+    'SwinTransformer',
+    'MixVisionTransformer',
+    'BiSeNetV1',
+    'BiSeNetV2',
+    'ICNet',
+    'TIMMBackbone',
+    'ERFNet',
+    'PCPVT',
+    'SVT',
+    'STDCNet',
+    'STDCContextPathNet',
+    'BEiT',
+    'MixVisionTransformerDA',
+    'mit_b0',
+    'mit_b1',
+    'mit_b2',
+    'mit_b3',
+    'mit_b4',
+    'mit_b5',
 ]

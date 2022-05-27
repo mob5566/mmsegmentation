@@ -1,4 +1,5 @@
 # Copyright (c) OpenMMLab. All rights reserved.
+from .ckpt_convert import mit_convert
 from .embed import PatchEmbed
 from .inverted_residual import InvertedResidual, InvertedResidualV3
 from .make_divisible import make_divisible
@@ -12,5 +13,6 @@ from .up_conv_block import UpConvBlock
 __all__ = [
     'ResLayer', 'SelfAttentionBlock', 'make_divisible', 'InvertedResidual',
     'UpConvBlock', 'InvertedResidualV3', 'SELayer', 'PatchEmbed',
-    'nchw_to_nlc', 'nlc_to_nchw', 'nchw2nlc2nchw', 'nlc2nchw2nlc'
+    'nchw_to_nlc', 'nlc_to_nchw', 'nchw2nlc2nchw', 'nlc2nchw2nlc',
+    'mit_convert'
 ]

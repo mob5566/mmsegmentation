@@ -16,11 +16,11 @@ from mmcv.utils import Config, DictAction, get_git_hash
 from mmseg import __version__
 from mmseg.apis import init_random_seed, set_random_seed, train_segmentor
 from mmseg.datasets import build_dataset
-from mmseg.models import build_segmentor
+from mmseg.models.builder import build_train_model
 from mmseg.utils import collect_env, get_root_logger, setup_multi_processes
 
 
-def parse_args():
+def parse_args(args):
     parser = argparse.ArgumentParser(description='Train a segmentor')
     parser.add_argument('config', help='train config file path')
     parser.add_argument('--work-dir', help='the dir to save logs and models')
@@ -90,7 +90,7 @@ def parse_args():
         '--auto-resume',
         action='store_true',
         help='resume from the latest checkpoint automatically.')
-    args = parser.parse_args()
+    args = parser.parse_args(args)
     if 'LOCAL_RANK' not in os.environ:
         os.environ['LOCAL_RANK'] = str(args.local_rank)
 
@@ -107,8 +107,8 @@ def parse_args():
     return args
 
 
-def main():
-    args = parse_args()
+def main(args):
+    args = parse_args(args)
 
     cfg = Config.fromfile(args.config)
     if args.cfg_options is not None:
@@ -126,6 +126,7 @@ def main():
         # use config filename as default work_dir if cfg.work_dir is None
         cfg.work_dir = osp.join('./work_dirs',
                                 osp.splitext(osp.basename(args.config))[0])
+    cfg.model.train_cfg.work_dir = cfg.work_dir
     if args.load_from is not None:
         cfg.load_from = args.load_from
     if args.resume_from is not None:
@@ -193,10 +194,8 @@ def main():
     meta['seed'] = seed
     meta['exp_name'] = osp.basename(args.config)
 
-    model = build_segmentor(
-        cfg.model,
-        train_cfg=cfg.get('train_cfg'),
-        test_cfg=cfg.get('test_cfg'))
+    model = build_train_model(
+        cfg, train_cfg=cfg.get('train_cfg'), test_cfg=cfg.get('test_cfg'))
     model.init_weights()
 
     # SyncBN is not support for DP

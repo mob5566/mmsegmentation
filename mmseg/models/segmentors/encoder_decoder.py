@@ -79,13 +79,18 @@ class EncoderDecoder(BaseSegmentor):
             align_corners=self.align_corners)
         return out
 
-    def _decode_head_forward_train(self, x, img_metas, gt_semantic_seg):
+    def _decode_head_forward_train(self,
+                                   x,
+                                   img_metas,
+                                   gt_semantic_seg,
+                                   seg_weight=None):
         """Run forward function and calculate loss for decode head in
         training."""
         losses = dict()
         loss_decode = self.decode_head.forward_train(x, img_metas,
                                                      gt_semantic_seg,
-                                                     self.train_cfg)
+                                                     self.train_cfg,
+                                                     seg_weight)
 
         losses.update(add_prefix(loss_decode, 'decode'))
         return losses
@@ -96,7 +101,11 @@ class EncoderDecoder(BaseSegmentor):
         seg_logits = self.decode_head.forward_test(x, img_metas, self.test_cfg)
         return seg_logits
 
-    def _auxiliary_head_forward_train(self, x, img_metas, gt_semantic_seg):
+    def _auxiliary_head_forward_train(self,
+                                      x,
+                                      img_metas,
+                                      gt_semantic_seg,
+                                      seg_weight=None):
         """Run forward function and calculate loss for auxiliary head in
         training."""
         losses = dict()
@@ -104,7 +113,7 @@ class EncoderDecoder(BaseSegmentor):
             for idx, aux_head in enumerate(self.auxiliary_head):
                 loss_aux = aux_head.forward_train(x, img_metas,
                                                   gt_semantic_seg,
-                                                  self.train_cfg)
+                                                  self.train_cfg, seg_weight)
                 losses.update(add_prefix(loss_aux, f'aux_{idx}'))
         else:
             loss_aux = self.auxiliary_head.forward_train(
@@ -119,7 +128,12 @@ class EncoderDecoder(BaseSegmentor):
 
         return seg_logit
 
-    def forward_train(self, img, img_metas, gt_semantic_seg):
+    def forward_train(self,
+                      img,
+                      img_metas,
+                      gt_semantic_seg,
+                      seg_weight=None,
+                      return_feat=False):
         """Forward function for training.
 
         Args:
@@ -135,18 +149,20 @@ class EncoderDecoder(BaseSegmentor):
         Returns:
             dict[str, Tensor]: a dictionary of loss components
         """
-
         x = self.extract_feat(img)
 
         losses = dict()
+        if return_feat:
+            losses['features'] = x
 
         loss_decode = self._decode_head_forward_train(x, img_metas,
-                                                      gt_semantic_seg)
+                                                      gt_semantic_seg,
+                                                      seg_weight)
         losses.update(loss_decode)
 
         if self.with_auxiliary_head:
             loss_aux = self._auxiliary_head_forward_train(
-                x, img_metas, gt_semantic_seg)
+                x, img_metas, gt_semantic_seg, seg_weight)
             losses.update(loss_aux)
 
         return losses
