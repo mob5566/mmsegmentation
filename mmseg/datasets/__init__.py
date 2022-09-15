@@ -14,11 +14,12 @@ from .isaid import iSAIDDataset
 from .isprs import ISPRSDataset
 from .loveda import LoveDADataset
 from .night_driving import NightDrivingDataset
+from .nlscbridge import NLSCBridgeDataset
+from .nlsclanduse import NLSCLanduseDataset
 from .pascal_context import PascalContextDataset, PascalContextDataset59
 from .potsdam import PotsdamDataset
 from .stare import STAREDataset
 from .voc import PascalVOCDataset
-from .nlsclanduse import NLSCLanduseDataset
 
 __all__ = [
     'CustomDataset', 'build_dataloader', 'ConcatDataset', 'RepeatDataset',
@@ -27,5 +28,6 @@ __all__ = [
     'PascalContextDataset59', 'ChaseDB1Dataset', 'DRIVEDataset', 'HRFDataset',
     'STAREDataset', 'DarkZurichDataset', 'NightDrivingDataset',
     'COCOStuffDataset', 'LoveDADataset', 'MultiImageMixDataset',
-    'iSAIDDataset', 'ISPRSDataset', 'PotsdamDataset', 'NLSCLanduseDataset'
+    'iSAIDDataset', 'ISPRSDataset', 'PotsdamDataset', 'NLSCLanduseDataset',
+    'NLSCBridgeDataset'
 ]
