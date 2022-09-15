@@ -7,6 +7,8 @@ import mmcv
 import numpy as np
 from PIL import Image
 
+from mmseg.datasets import NLSCLanduseDataset
+
 ID_TABLE = dict({
     7:
     dict({
@@ -56,7 +58,9 @@ def convert_to_train_id(args):
     new_file = file.replace('.png', f'_labelTrainIds{n_class}cls.png')
     assert file != new_file
     sample_class_stats['file'] = new_file
-    Image.fromarray(label_copy, mode='L').save(new_file)
+    img = Image.fromarray(label_copy, mode='L')
+    img.putpalette(sum(map(tuple, NLSCLanduseDataset.PALETTE), ()))
+    img.save(new_file)
     return sample_class_stats
 
 
